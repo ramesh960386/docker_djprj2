@@ -1,0 +1,79 @@
+https://www.kaggle.com/code
+https://flutterq.com/solved-warning-running-pip-as-the-root-user-can-result-in-broken-permissions-and-conflicting-behaviour/
+
+
+sudo apt-get install python3-venv
+python3 -m venv env
+source env/bin/activate
+#########################################################################
+
+
+https://docs.docker.com/compose/gettingstarted/
+https://aws.amazon.com/getting-started/hands-on/serve-a-flask-app/
+
+https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/
+
+build=>  docker-compose build #docker-compose up
+Re-build=> docker-compose up
+run detached mode=> docker-compose up -d
+
+docker-compose up -d
+docker-compose run
+docker-compose run web env
+docker-compose stop
+docker-compose down --volumes
+
+
+list of images=> docker images
+list of containers=> docker-compose ps
+
+remove all images=> docker image prune -a
+remove all containers=> docker rm $(docker ps --filter status=exited -q)
+
+docker stop all containers => docker kill $(docker ps -q)
+
+`docker-compose build` or `docker-compose up --build`.
+
+
+##
+git overide local changes
+
+git reset --hard HEAD
+git pull
+
+git undo added files
+git stash push --include-untracked
+
+####
+docker-compose down -v
+
+docker-compose build
+docker-compose up -d
+docker-compose exec web sh
+
+###
+switch terminal into database
+docker-compose exec db psql --username=hello_django --dbname=hello_django_dev
+List of databases --> \l
+connect database --> \c hello_django_dev
+List of relations --> \dt
+quit databse --> \q
+###
+chmod +x entrypoint.sh
+####
+docker build -f ./Dockerfile -t hello_django:latest code
+
+chmod +x app/entrypoint.prod.sh
+
+docker run -d \
+    -p 8007:8007 \
+    -e "SECRET_KEY=please_change_me" -e "DEBUG=1" -e "DJANGO_ALLOWED_HOSTS=*" \
+    hello_django python manage.py runserver 0.0.0.0:8007
+
+
+##
+
+docker-compose -f docker-compose.yml exec web python manage.py migrate --noinput
+
+https://docs.docker.com/samples/django/
+https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/
